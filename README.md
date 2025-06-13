@@ -1,23 +1,22 @@
-
 # PDF-Merger 🧩
 
-**PDF-Merger** is a simple Python utility to merge multiple PDF files into one, effortlessly.  
-Just drop your `.pdf` files into the `PDFs/` folder, run the script, and get a merged document in seconds.
+**PDF-Merger** is a lightweight Python utility to merge multiple PDF files into a single document, saved directly to your Desktop — no manual path input required.
 
 ---
 
 ## 📦 Features
 
-- Auto-detects `.pdf` files in the `PDFs/` folder.
-- Merges them in the order they appear.
-- Provides clear prompts and helpful error messages.
-- Creates the `PDFs/` folder automatically if it doesn't exist.
+- Automatically detects `.pdf` files in the `PDFs/` folder.
+- Automatically creates the `PDFs/` folder if missing.
+- Merges files in the order they appear in the folder.
+- Saves the merged PDF to the actual Desktop path (supports OneDrive or localized folder names).
+- Displays clear progress and error messages.
 
 ---
 
 ## 🛠️ Requirements
 
-- Python 3.x
+- Python 3.x  
 - [`PyPDF2`](https://pypi.org/project/PyPDF2/)
 
 Install it via:
@@ -30,19 +29,17 @@ pip install PyPDF2
 
 ## 🚀 How to Use
 
-1. Put all your `.pdf` files into the `PDFs/` folder.
+1. Place your `.pdf` files inside the `PDFs/` folder.
 2. Run the script:
    ```bash
    python pdf_merger.py
    ```
-3. Enter:
-   - A name for the merged PDF (without `.pdf`)
-   - A folder path to save the output
-4. Done! 🎉
+3. When prompted, enter a **name** for the merged PDF (without `.pdf`).
+4. The output will be saved directly to your Desktop. 🎉
 
 ---
 
-## 📂 Example
+## 📂 Example Structure
 
 ```
 📂 Project Folder
@@ -52,13 +49,15 @@ pip install PyPDF2
 │   ├── file2.pdf
 ```
 
-After running the script, you'll get:
+After running the script:
 
 ```
 ✅ Added: PDFs/file1.pdf  
 ✅ Added: PDFs/file2.pdf  
-✅ Merge complete. File saved as: C:\Users\You\Desktop\merged.pdf
+✅ Merged file saved as: C:\Users\YourName\Desktop\merged.pdf
 ```
+
+(If your Desktop is synced with OneDrive or renamed, the script will still find it correctly.)
 
 ---
 

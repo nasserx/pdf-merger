@@ -1,7 +1,17 @@
 import os
+import ctypes.wintypes
 from PyPDF2 import PdfMerger
 
 PDF_DIR = "PDFs"
+
+def get_desktop_path():
+    # Windows Desktop folder ID
+    CSIDL_DESKTOP = 0
+    SHGFP_TYPE_CURRENT = 0
+
+    buf = ctypes.create_unicode_buffer(ctypes.wintypes.MAX_PATH)
+    ctypes.windll.shell32.SHGetFolderPathW(None, CSIDL_DESKTOP, None, SHGFP_TYPE_CURRENT, buf)
+    return buf.value
 
 def get_pdf_files():
     if not os.path.exists(PDF_DIR):
@@ -29,15 +39,13 @@ def merge_pdfs(output_path):
     print(f"\n✅ Merged file saved as: {merged_file}")
 
 
-
 if __name__ == "__main__":
     print(f"📂 Put PDFs to merge inside '{PDF_DIR}' folder.")
-    print("📌 Example save path: C:\\Users\\YourName\\Desktop\n")
+    print("📌 Merged PDF will be saved automatically to your Desktop.\n")
 
     name = input("📝 Merged file name (no .pdf): ").strip()
-    folder = input("📁 Save folder path: ").strip()
-
-    out_path = rf"{folder}\{name}"
+    desktop = get_desktop_path()
+    out_path = os.path.join(desktop, name)
 
     try:
         merge_pdfs(out_path)
